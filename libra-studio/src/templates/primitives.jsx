@@ -23,6 +23,7 @@ export function PhotoSlot({ slotId, placeholder = 'FOTO · LIBRA', style = {}, t
   const ctx = useContext(PhotoContext);
   const photo = ctx?.photos?.[slotId];
   const [over, setOver] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const fileRef = useRef();
 
   const handleFile = async (file) => {
@@ -43,13 +44,51 @@ export function PhotoSlot({ slotId, placeholder = 'FOTO · LIBRA', style = {}, t
   return (
     <div
       style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', ...style }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => { setHovered(false); setOver(false); }}
       onDragOver={e => { e.preventDefault(); setOver(true); }}
       onDragLeave={() => setOver(false)}
       onDrop={e => { e.preventDefault(); setOver(false); handleFile(e.dataTransfer.files[0]); }}
       onClick={() => !photo && fileRef.current?.click()}
     >
       {photo ? (
-        <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', pointerEvents: 'none' }} />
+        <>
+          <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', pointerEvents: 'none' }} />
+          {/* Hover overlay with replace / remove controls */}
+          {(hovered || over) && (
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: over ? 'rgba(0,0,0,0.55)' : 'rgba(0,0,0,0.42)',
+              display: 'flex', flexDirection: 'column',
+              alignItems: 'center', justifyContent: 'center', gap: 8,
+              outline: over ? `2px solid ${LF.amber}` : 'none',
+              outlineOffset: -2,
+            }}>
+              {over ? (
+                <span style={{ fontFamily: LF.mono, fontSize: 10, color: LF.amber, letterSpacing: '0.14em' }}>+ SOLTAR PARA REEMPLAZAR</span>
+              ) : (
+                <>
+                  <button
+                    onClick={e => { e.stopPropagation(); fileRef.current?.click(); }}
+                    style={{
+                      background: LF.amber, color: LF.black, border: 'none',
+                      padding: '7px 14px', fontFamily: LF.mono, fontSize: 9,
+                      letterSpacing: '0.16em', cursor: 'pointer', textTransform: 'uppercase',
+                    }}
+                  >↺ CAMBIAR FOTO</button>
+                  <button
+                    onClick={e => { e.stopPropagation(); ctx?.deletePhoto(slotId); }}
+                    style={{
+                      background: 'transparent', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.35)',
+                      padding: '5px 14px', fontFamily: LF.mono, fontSize: 9,
+                      letterSpacing: '0.16em', cursor: 'pointer', textTransform: 'uppercase',
+                    }}
+                  >× ELIMINAR</button>
+                </>
+              )}
+            </div>
+          )}
+        </>
       ) : (
         <div style={{
           width: '100%', height: '100%', background: bg,
