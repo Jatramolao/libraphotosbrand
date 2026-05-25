@@ -46,7 +46,11 @@ export async function exportAsPng(element, preset, filename = 'libra-export') {
   const rect = element.getBoundingClientRect();
   const pixelRatio = preset.w / rect.width;
   const fontEmbedCSS = await buildFontEmbedCSS();
-  const dataUrl = await toPng(element, { pixelRatio, fontEmbedCSS, cacheBust: false });
+  const opts = { pixelRatio, fontEmbedCSS, cacheBust: false };
+  // First call primes the image cache inside the cloned document;
+  // without it, <img> elements render white on first capture.
+  await toPng(element, opts);
+  const dataUrl = await toPng(element, opts);
   const a = document.createElement('a');
   a.href = dataUrl;
   a.download = `${filename}_${preset.w}x${preset.h}.png`;
