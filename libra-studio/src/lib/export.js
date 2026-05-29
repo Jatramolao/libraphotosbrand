@@ -41,16 +41,20 @@ async function buildFontEmbedCSS() {
   }
 }
 
-export async function exportAsPng(element, preset, filename = 'libra-export') {
-  if (!element) throw new Error('No preview element found');
+// Captures element as PNG data URL without triggering a download.
+// Used by ExportAllModal to collect images before offering them.
+export async function capturePng(element, preset) {
+  if (!element) throw new Error('No element');
   const rect = element.getBoundingClientRect();
   const pixelRatio = preset.w / rect.width;
   const fontEmbedCSS = await buildFontEmbedCSS();
   const opts = { pixelRatio, fontEmbedCSS, cacheBust: false };
-  // First call primes the image cache inside the cloned document;
-  // without it, <img> elements render white on first capture.
-  await toPng(element, opts);
-  const dataUrl = await toPng(element, opts);
+  await toPng(element, opts); // prime image cache in cloned document
+  return toPng(element, opts);
+}
+
+export async function exportAsPng(element, preset, filename = 'libra-export') {
+  const dataUrl = await capturePng(element, preset);
   const a = document.createElement('a');
   a.href = dataUrl;
   a.download = `${filename}_${preset.w}x${preset.h}.png`;

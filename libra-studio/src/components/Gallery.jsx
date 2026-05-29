@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { TEMPLATES, CATEGORY_LABELS } from '../data/templates-meta';
 import { TEMPLATE_COMPONENTS } from '../templates/index';
+import ExportAllModal from './ExportAllModal';
 
 const LF = { amber: '#F7A810', black: '#000', white: '#fff', mono: '"IBM Plex Mono", monospace', display: '"Archivo Black", sans-serif' };
 
@@ -9,6 +10,7 @@ const ASPECT = { portrait: { w: 160, h: 200 }, square: { w: 160, h: 160 }, story
 
 export default function Gallery({ project, onSelectTemplate, onBack, onBrandSettings }) {
   const [filter, setFilter] = useState('all');
+  const [showExportAll, setShowExportAll] = useState(false);
   const cats = ['all', 'feed', 'carousel', 'stories', 'profile'];
   const visible = filter === 'all' ? TEMPLATES : TEMPLATES.filter(t => t.category === filter);
 
@@ -25,9 +27,14 @@ export default function Gallery({ project, onSelectTemplate, onBack, onBrandSett
             <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.18em', marginTop: 2 }}>SELECCIONA UNA PLANTILLA</div>
           </div>
         </div>
-        <button onClick={onBrandSettings} style={{ background: 'transparent', border: `1px solid rgba(255,255,255,0.3)`, color: LF.amber, padding: '8px 14px', fontFamily: LF.mono, fontSize: 10, letterSpacing: '0.14em', cursor: 'pointer' }}>
-          ⚙ MARCA
-        </button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button onClick={() => setShowExportAll(true)} style={{ background: LF.amber, color: LF.black, border: 'none', padding: '8px 14px', fontFamily: LF.mono, fontSize: 10, letterSpacing: '0.14em', cursor: 'pointer', fontWeight: 700 }}>
+            ↓ EXPORTAR TODO
+          </button>
+          <button onClick={onBrandSettings} style={{ background: 'transparent', border: `1px solid rgba(255,255,255,0.3)`, color: LF.amber, padding: '8px 14px', fontFamily: LF.mono, fontSize: 10, letterSpacing: '0.14em', cursor: 'pointer' }}>
+            ⚙ SESIÓN
+          </button>
+        </div>
       </div>
 
       {/* Filter tabs */}
@@ -66,6 +73,8 @@ export default function Gallery({ project, onSelectTemplate, onBack, onBrandSett
           );
         })}
       </div>
+
+      {showExportAll && <ExportAllModal project={project} onClose={() => setShowExportAll(false)} />}
     </div>
   );
 }
