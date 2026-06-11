@@ -7,6 +7,7 @@ export const LF = {
   gridLine: 'rgba(255,255,255,0.18)', gridLineDark: 'rgba(0,0,0,0.18)',
   display: '"Archivo Black", "Helvetica Neue", Helvetica, Arial, sans-serif',
   mono: '"IBM Plex Mono", ui-monospace, monospace',
+  serif: '"Lora", Georgia, serif',
 };
 
 export function useLP() { return useContext(LPContext); }
@@ -116,7 +117,7 @@ export const LFMark = ({ size = 14, color = LF.white, style = {}, text }) => {
   const lp = useLP();
   return (
     <span style={{ fontFamily: LF.display, fontSize: size, letterSpacing: '-0.04em', color, lineHeight: 1, display: 'inline-block', ...style }}>
-      {text ?? lp?.monogram ?? 'LP'}
+      {text ?? lp?.monogram ?? 'LF'}
     </span>
   );
 };

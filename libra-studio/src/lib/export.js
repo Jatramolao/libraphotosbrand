@@ -7,7 +7,7 @@ export const EXPORT_PRESETS = {
 };
 
 const FONTS_URL =
-  'https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap';
+  'https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap';
 
 // Cache so we only fetch once per session
 let _fontCSS = null;

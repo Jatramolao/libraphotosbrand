@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TEMPLATES, CATEGORY_LABELS } from '../data/templates-meta';
+import { TEMPLATES, CATEGORY_LABELS, CATEGORIES } from '../data/templates-meta';
 import { TEMPLATE_COMPONENTS } from '../templates/index';
 import ExportAllModal from './ExportAllModal';
 
@@ -11,7 +11,7 @@ const ASPECT = { portrait: { w: 160, h: 200 }, square: { w: 160, h: 160 }, story
 export default function Gallery({ project, onSelectTemplate, onBack, onBrandSettings }) {
   const [filter, setFilter] = useState('all');
   const [showExportAll, setShowExportAll] = useState(false);
-  const cats = ['all', 'feed', 'carousel', 'stories', 'profile'];
+  const cats = ['all', ...CATEGORIES];
   const visible = filter === 'all' ? TEMPLATES : TEMPLATES.filter(t => t.category === filter);
 
   return (

@@ -1,8 +1,8 @@
-# Libra Photos Studio — Contexto de Proyecto
+# Libra Fotos Studio — Contexto de Proyecto
 
 ## Qué es
-App web para crear contenido de Instagram de la marca **Libra Photos** (fotografía de moda).  
-Flujo: **Proyectos → Galería → Editor → Exportar PNG**.  
+App web para crear contenido de Instagram de la marca **LIBRA FOTOS** (fotografía de moda, rebrand jun-2026).
+Flujo: **Proyectos → Galería → Editor → Exportar PNG**.
 Todo local: sin backend, sin login. Datos en `localStorage` + `IndexedDB`.
 
 ## Stack
@@ -10,7 +10,7 @@ Todo local: sin backend, sin login. Datos en `localStorage` + `IndexedDB`.
 - Repo: `https://github.com/Jatramolao/libraphotosbrand`
 - Carpeta del proyecto: `libra-studio/`
 
-## Identidad visual
+## Identidad visual (diseño v2 — bundle Claude Design jun-2026)
 | Token | Valor |
 |---|---|
 | Negro | `#000000` |
@@ -19,7 +19,10 @@ Todo local: sin backend, sin login. Datos en `localStorage` + `IndexedDB`.
 | Fondo | `#f0eee9` |
 | Display | Archivo Black |
 | Mono | IBM Plex Mono |
+| Cuerpo | Lora (bios, captions, descripciones) |
 | Border-radius | 0 (brutalismo) |
+
+Marca: **LIBRA FOTOS** · monograma **LF** · LIBRAPHOTOS.COM · @_libraphotos
 
 ## Arquitectura de archivos clave
 ```
@@ -29,61 +32,84 @@ src/
 │   ├── LPContent.jsx        # Contexto de textos (tokens) por proyecto
 │   └── PhotoContext.jsx     # Contexto de fotos vía IndexedDB
 ├── data/
-│   ├── defaults.js          # ~80 tokens con valores por defecto
-│   └── templates-meta.js   # Registry de 15 plantillas + campos editables
+│   ├── defaults.js          # ~150 tokens con valores por defecto (v2)
+│   └── templates-meta.js   # Registry de 26 plantillas + campos + categorías
 ├── lib/
 │   ├── storage.js           # CRUD proyectos (localStorage) + fotos (IDB)
 │   └── export.js            # capturePng() + exportAsPng() vía html-to-image
 ├── templates/
-│   ├── primitives.jsx       # Frame, PhotoSlot, LFMark, TechStrip, lpLines
+│   ├── primitives.jsx       # Frame, PhotoSlot, LFMark, TechStrip, lpLines, LF
 │   ├── static1.jsx          # T01–T10
 │   ├── static2.jsx          # T11–T17
-│   └── index.js             # TEMPLATE_COMPONENTS map + NATIVE_SIZE
+│   ├── static3.jsx          # T18–T25 (nuevas v2)
+│   ├── static4.jsx          # T26–T28 (nuevas v2)
+│   └── index.js             # TEMPLATE_COMPONENTS map
 └── components/
     ├── ProjectList.jsx      # Crear / abrir / renombrar / eliminar proyectos
-    ├── Gallery.jsx          # Grid de plantillas + filtros + botón Export All
+    ├── Gallery.jsx          # Grid por secciones + filtros + Export All
     ├── Editor.jsx           # Preview + TextPanel + barra de export
     ├── TextPanel.jsx        # Campos de texto por plantilla (useLP)
-    ├── BrandSettings.jsx    # Modal con tabs: Marca / Sesión / Datos Técnicos
-    └── ExportAllModal.jsx   # Export batch de las 15 plantillas con progreso
+    ├── BrandSettings.jsx    # Modal tabs: Marca / Sesión / Datos Técnicos
+    └── ExportAllModal.jsx   # Export batch de las 26 plantillas con progreso
 ```
 
-## Plantillas implementadas (15)
+## Plantillas (26 — set v2, espeja la curaduría del sitio web)
+### Portafolio Editorial · Blanco (estilo Vogue, sin overlays)
+| ID | Nombre | Aspecto | ¿Foto? |
+|---|---|---|---|
+| t26 | Portafolio Editorial | 4:5 | ✓ (marca de agua LF violeta 10%) |
+| t27 | Editorial Spread | 1:1 | ✓ ×2 |
+| t12 | Designer Spotlight | 4:5 | ✓ |
+| t08 | Quote Pull | 1:1 | — |
+
+### Runway / Backstage · Negro
 | ID | Nombre | Aspecto | ¿Foto? |
 |---|---|---|---|
 | t01 | Editorial Cover | 4:5 | ✓ |
 | t02 | Metadata Card | 4:5 | ✓ |
-| t03 | Violet Drop | 4:5 | ✓ |
+| t28 | Music Event / Gig Report | 4:5 | ✓ (banda ámbar lateral) |
 | t04 | Credits Slate | 4:5 | — |
-| t06 | Type Poster | 1:1 | — |
-| t08 | Quote Pull | 1:1 | — |
-| t09 | Story Ticker | 9:16 | ✓ |
-| t10 | Story Countdown | 9:16 | — |
 | t11 | Drop Teaser | 4:5 | ✓ |
-| t12 | Designer Spotlight | 4:5 | ✓ |
 | t13 | Event Poster | 4:5 | — |
-| t14 | Booking | 4:5 | — |
-| t15 | Before/After | 1:1 | ✓ ×2 |
-| t16 | Reel Cover | 9:16 | ✓ |
-| t17 | Highlight Covers | 1:1 | — |
+| t14 | Booking (desc. en Lora) | 4:5 | — |
+| t24 | New Drop / Lanzamiento | 4:5 | ✓ |
+| t19 | Sobre Mí / Presentación | 4:5 | ✓ |
+| t18 | Proceso en Pasos | 4:5 | — |
+| t20 | Top 5 / Ranking | 4:5 | — |
+
+### Ámbar Collection · Violeta
+t03 Ámbar Collection · 4:5 · ✓
+
+### Carrusel 1:1
+t06 Type Poster (—) · t15 Before/After (✓×2) · t21 Testimonio (✓) · t22 Behind the Scenes (✓) · t23 Datos Sesión (—) · t25 Polaroid Stack (✓×3)
+
+### Stories 9:16
+t09 Story Ticker (✓) · t10 Story Countdown (—) · t16 Reel Cover (✓)
+
+### Perfil
+t17 Highlight Covers (—)
+
+Nota: T05 Contact Sheet y T07 Diptych fueron **descartadas** en el diseño v2.
+T06/T08/T15 escalan a 4:5 con el selector de aspecto del editor.
 
 ## Fixes aplicados
 | Problema | Causa | Solución |
 |---|---|---|
 | Export negro | Render offscreen + CORS fonts | Export desde DOM vivo |
-| Fuentes perdidas en PNG | `skipFonts: true` | `buildFontEmbedCSS()` incrusta Archivo Black + IBM Plex Mono como base64 |
+| Fuentes perdidas en PNG | `skipFonts: true` | `buildFontEmbedCSS()` incrusta Archivo Black + IBM Plex Mono + Lora como base64 |
 | Imagen blanca en PNG | `html-to-image` clona DOM sin esperar carga de `<img>` | Doble llamada a `toPng()` (primera prima el caché) |
 | No se podía reemplazar foto | Click ignorado si ya había foto | Overlay hover con botones **↺ CAMBIAR** y **× ELIMINAR** |
+| Ticker T09 invisible en export | Animación marquee arrancaba fuera de cuadro | Ticker estático |
 
 ## Funcionalidades activas
-- ✅ Proyectos con nombre, crear / abrir / renombrar / eliminar
-- ✅ Galería con 15 plantillas en miniatura + filtros por categoría
-- ✅ Editor: panel de texto en tiempo real + preview escalado
+- ✅ Proyectos: crear / abrir / renombrar / eliminar
+- ✅ Galería con 26 plantillas + filtros por sección (blanco/negro/ámbar/carrusel/stories/perfil)
+- ✅ Editor: panel de texto en tiempo real + preview escalado + selector de aspecto
 - ✅ Slots de foto: agregar, reemplazar y eliminar (hover overlay + drag & drop)
 - ✅ Export PNG individual 2× (1080px) con fuentes e imágenes incrustadas
-- ✅ Export All: modal con progreso, exporta las 15 plantillas en secuencia
-- ✅ BrandSettings: 3 tabs (Marca / Sesión Actual / Datos Técnicos), campos globales compartidos por todas las plantillas del proyecto
-- ✅ Tests: 17 casos (storage + export presets), `npm test`
+- ✅ Export All: modal con progreso, exporta las 26 plantillas en secuencia
+- ✅ BrandSettings: 3 tabs (Marca / Sesión Actual / Datos Técnicos)
+- ✅ Tests: 26 casos (storage + export presets + integridad de registry), `npm test`
 
 ## Backlog pendiente
 ### Alta prioridad
@@ -98,8 +124,7 @@ src/
 - **Q6** — Zoom en preview del editor
 
 ### V2
-- Export MP4 / video loop para Reels
-- Nuevas plantillas (carrusel secuencial, behind the scenes)
+- Nuevas plantillas (carrusel secuencial)
 - Presets de color por sesión
 
 ## Comandos útiles
@@ -107,7 +132,7 @@ src/
 cd libra-studio
 npm run dev        # servidor local en :5173
 npm run build      # build de producción
-npm test           # 17 tests Vitest
+npm test           # tests Vitest
 ```
 
 ## Deploy
