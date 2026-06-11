@@ -11,9 +11,15 @@ export function PhotoProvider({ projectId, children }) {
     getProjectPhotos(projectId).then(setPhotos);
   }, [projectId]);
 
-  const setPhoto = useCallback(async (slotId, dataUrl) => {
-    await savePhoto(projectId, slotId, dataUrl);
-    setPhotos(p => ({ ...p, [slotId]: dataUrl }));
+  const setPhoto = useCallback(async (slotId, value) => {
+    await savePhoto(projectId, slotId, value);
+    setPhotos(p => ({ ...p, [slotId]: value }));
+  }, [projectId]);
+
+  // Escritura masiva — usada por "Foto de sesión" para llenar varios slots a la vez
+  const setManyPhotos = useCallback(async (map) => {
+    await Promise.all(Object.entries(map).map(([sid, value]) => savePhoto(projectId, sid, value)));
+    setPhotos(p => ({ ...p, ...map }));
   }, [projectId]);
 
   const deletePhoto = useCallback(async (slotId) => {
@@ -21,7 +27,7 @@ export function PhotoProvider({ projectId, children }) {
     setPhotos(p => { const n = { ...p }; delete n[slotId]; return n; });
   }, [projectId]);
 
-  return <PhotoContext.Provider value={{ photos, setPhoto, deletePhoto }}>{children}</PhotoContext.Provider>;
+  return <PhotoContext.Provider value={{ photos, setPhoto, setManyPhotos, deletePhoto }}>{children}</PhotoContext.Provider>;
 }
 
 export function usePhotos() { return useContext(PhotoContext); }

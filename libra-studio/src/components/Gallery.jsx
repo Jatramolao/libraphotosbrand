@@ -1,16 +1,39 @@
 import { useState } from 'react';
 import { TEMPLATES, CATEGORY_LABELS, CATEGORIES } from '../data/templates-meta';
 import { TEMPLATE_COMPONENTS } from '../templates/index';
+import { usePhotos } from '../context/PhotoContext';
 import ExportAllModal from './ExportAllModal';
+import SessionPhotoModal from './SessionPhotoModal';
 
 const LF = { amber: '#F7A810', black: '#000', white: '#fff', mono: '"IBM Plex Mono", monospace', display: '"Archivo Black", sans-serif' };
 
 // Aspect ratios for preview containers
 const ASPECT = { portrait: { w: 160, h: 200 }, square: { w: 160, h: 160 }, story: { w: 90, h: 160 } };
 
+// Q5 — chip de estado de fotos de una plantilla
+function PhotoChip({ tmpl, photos }) {
+  if (!tmpl.photoSlots?.length) return null;
+  const filled = tmpl.photoSlots.filter(s => photos[s]).length;
+  const total = tmpl.photoSlots.length;
+  const complete = filled === total;
+  return (
+    <span style={{
+      fontFamily: LF.mono, fontSize: 8, letterSpacing: '0.1em',
+      padding: '2px 6px',
+      background: complete ? LF.amber : filled > 0 ? 'rgba(247,168,16,0.25)' : 'rgba(0,0,0,0.08)',
+      color: complete ? LF.black : 'rgba(0,0,0,0.55)',
+      fontWeight: complete ? 700 : 400,
+    }}>
+      {complete ? `FOTO ${total > 1 ? `${filled}/${total} ` : ''}✓` : `FOTO ${filled}/${total}`}
+    </span>
+  );
+}
+
 export default function Gallery({ project, onSelectTemplate, onBack, onBrandSettings }) {
   const [filter, setFilter] = useState('all');
   const [showExportAll, setShowExportAll] = useState(false);
+  const [showSessionPhoto, setShowSessionPhoto] = useState(false);
+  const { photos } = usePhotos();
   const cats = ['all', ...CATEGORIES];
   const visible = filter === 'all' ? TEMPLATES : TEMPLATES.filter(t => t.category === filter);
 
@@ -28,8 +51,11 @@ export default function Gallery({ project, onSelectTemplate, onBack, onBrandSett
           </div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
+          <button onClick={() => setShowSessionPhoto(true)} style={{ background: 'transparent', border: `1px solid ${LF.amber}`, color: LF.amber, padding: '8px 14px', fontFamily: LF.mono, fontSize: 10, letterSpacing: '0.14em', cursor: 'pointer', fontWeight: 700 }}>
+            + FOTO SESIÓN
+          </button>
           <button onClick={() => setShowExportAll(true)} style={{ background: LF.amber, color: LF.black, border: 'none', padding: '8px 14px', fontFamily: LF.mono, fontSize: 10, letterSpacing: '0.14em', cursor: 'pointer', fontWeight: 700 }}>
-            ↓ EXPORTAR TODO
+            ↓ EXPORTAR
           </button>
           <button onClick={onBrandSettings} style={{ background: 'transparent', border: `1px solid rgba(255,255,255,0.3)`, color: LF.amber, padding: '8px 14px', fontFamily: LF.mono, fontSize: 10, letterSpacing: '0.14em', cursor: 'pointer' }}>
             ⚙ SESIÓN
@@ -38,14 +64,14 @@ export default function Gallery({ project, onSelectTemplate, onBack, onBrandSett
       </div>
 
       {/* Filter tabs */}
-      <div style={{ display: 'flex', gap: 0, padding: '0 32px', borderBottom: `1px solid rgba(0,0,0,0.1)`, background: '#f0eee9' }}>
+      <div style={{ display: 'flex', gap: 0, padding: '0 32px', borderBottom: `1px solid rgba(0,0,0,0.1)`, background: '#f0eee9', overflowX: 'auto' }}>
         {cats.map(c => (
           <button key={c} onClick={() => setFilter(c)} style={{
             padding: '12px 16px', border: 'none', background: 'transparent',
             fontFamily: LF.mono, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase',
             color: filter === c ? LF.black : 'rgba(0,0,0,0.45)',
             borderBottom: filter === c ? `2px solid ${LF.amber}` : '2px solid transparent',
-            cursor: 'pointer', marginBottom: -1,
+            cursor: 'pointer', marginBottom: -1, whiteSpace: 'nowrap',
           }}>
             {c === 'all' ? 'Todas' : CATEGORY_LABELS[c] || c}
           </button>
@@ -57,7 +83,7 @@ export default function Gallery({ project, onSelectTemplate, onBack, onBrandSett
         {visible.map(tmpl => {
           const Component = TEMPLATE_COMPONENTS[tmpl.id];
           const asp = ASPECT[tmpl.defaultAspect] || ASPECT.portrait;
-          const nativeW = tmpl.defaultAspect === 'story' ? 405 : tmpl.defaultAspect === 'square' ? 540 : 540;
+          const nativeW = tmpl.defaultAspect === 'story' ? 405 : 540;
           const nativeH = tmpl.defaultAspect === 'story' ? 720 : tmpl.defaultAspect === 'square' ? 540 : 675;
           const scale = asp.w / nativeW;
 
@@ -68,13 +94,17 @@ export default function Gallery({ project, onSelectTemplate, onBack, onBrandSett
                   {Component && <Component w={nativeW} h={nativeH} />}
                 </div>
               </div>
-              <div style={{ marginTop: 8, fontSize: 10, letterSpacing: '0.1em', color: 'rgba(0,0,0,0.6)', textTransform: 'uppercase', maxWidth: asp.w }}>{tmpl.label}</div>
+              <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 6, maxWidth: asp.w }}>
+                <span style={{ fontSize: 10, letterSpacing: '0.1em', color: 'rgba(0,0,0,0.6)', textTransform: 'uppercase' }}>{tmpl.label}</span>
+                <PhotoChip tmpl={tmpl} photos={photos} />
+              </div>
             </div>
           );
         })}
       </div>
 
       {showExportAll && <ExportAllModal project={project} onClose={() => setShowExportAll(false)} />}
+      {showSessionPhoto && <SessionPhotoModal onClose={() => setShowSessionPhoto(false)} />}
     </div>
   );
 }

@@ -4,11 +4,13 @@
 //    Backstage negro, Ámbar Collection violeta, carrusel 1:1, stories, perfil)
 // defaultAspect: 'portrait'(4:5) | 'square'(1:1) | 'story'(9:16)
 // hasPhoto: ¿tiene slots de foto?
+// photoSlots: IDs de los slots de foto de la plantilla (indicador en galería)
+// mainSlot: slot que recibe la "foto de sesión" (solo slots protagonistas)
 // fields: tokens de texto editables — { key, label, multiline? }
 export const TEMPLATES = [
   // ─── PORTAFOLIO EDITORIAL · FONDO BLANCO ──────────────────────────
   {
-    id: 't26', label: '26 · Portafolio Editorial', category: 'blanco', defaultAspect: 'portrait', hasPhoto: true,
+    id: 't26', label: '26 · Portafolio Editorial', category: 'blanco', defaultAspect: 'portrait', hasPhoto: true, photoSlots: ['t26-photo'], mainSlot: 't26-photo',
     fields: [
       { key: 't26Stamp', label: 'Stamp' },
       { key: 't26Index', label: 'Índice' },
@@ -19,7 +21,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't27', label: '27 · Editorial Spread', category: 'blanco', defaultAspect: 'square', hasPhoto: true,
+    id: 't27', label: '27 · Editorial Spread', category: 'blanco', defaultAspect: 'square', hasPhoto: true, photoSlots: ['t27-photo-1', 't27-photo-2'],
     fields: [
       { key: 't27Stamp', label: 'Stamp' },
       { key: 't27Fig1', label: 'Fig. 1' },
@@ -29,7 +31,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't12', label: '12 · Designer Spotlight', category: 'blanco', defaultAspect: 'portrait', hasPhoto: true,
+    id: 't12', label: '12 · Designer Spotlight', category: 'blanco', defaultAspect: 'portrait', hasPhoto: true, photoSlots: ['t12-main'], mainSlot: 't12-main',
     fields: [
       { key: 't12Stamp', label: 'Stamp' },
       { key: 't12SectionLabel', label: 'Etiqueta sección' },
@@ -38,7 +40,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't08', label: '08 · Quote Pull', category: 'blanco', defaultAspect: 'square', hasPhoto: false,
+    id: 't08', label: '08 · Quote Pull', category: 'blanco', defaultAspect: 'square', hasPhoto: false, photoSlots: [],
     fields: [
       { key: 'quote', label: 'Frase', multiline: true },
       { key: 't08Stamp', label: 'Stamp' },
@@ -48,7 +50,7 @@ export const TEMPLATES = [
 
   // ─── RUNWAY / BACKSTAGE · FONDO NEGRO ─────────────────────────────
   {
-    id: 't01', label: '01 · Editorial Cover', category: 'negro', defaultAspect: 'portrait', hasPhoto: true,
+    id: 't01', label: '01 · Editorial Cover', category: 'negro', defaultAspect: 'portrait', hasPhoto: true, photoSlots: ['t01-main'], mainSlot: 't01-main',
     fields: [
       { key: 'coverTitle', label: 'Título', multiline: true },
       { key: 'coverCaption', label: 'Caption' },
@@ -58,7 +60,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't02', label: '02 · Metadata Card', category: 'negro', defaultAspect: 'portrait', hasPhoto: true,
+    id: 't02', label: '02 · Metadata Card', category: 'negro', defaultAspect: 'portrait', hasPhoto: true, photoSlots: ['t02-main'], mainSlot: 't02-main',
     fields: [
       { key: 't02FileLabel', label: 'Label 1' }, { key: 't02FileValue', label: 'Valor 1' },
       { key: 't02CamLabel', label: 'Label 2' }, { key: 't02CamValue', label: 'Valor 2' },
@@ -67,7 +69,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't28', label: '28 · Music Event / Gig Report', category: 'negro', defaultAspect: 'portrait', hasPhoto: true,
+    id: 't28', label: '28 · Music Event / Gig Report', category: 'negro', defaultAspect: 'portrait', hasPhoto: true, photoSlots: ['t28-photo'], mainSlot: 't28-photo',
     fields: [
       { key: 't28Stamp', label: 'Stamp' },
       { key: 't28VertLabel', label: 'Banda vertical' },
@@ -79,7 +81,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't04', label: '04 · Credits Slate', category: 'negro', defaultAspect: 'portrait', hasPhoto: false,
+    id: 't04', label: '04 · Credits Slate', category: 'negro', defaultAspect: 'portrait', hasPhoto: false, photoSlots: [],
     fields: [
       { key: 't04Title', label: 'Título', multiline: true },
       { key: 't04TopLabel', label: 'Top label' },
@@ -91,14 +93,14 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't11', label: '11 · Drop / Teaser', category: 'negro', defaultAspect: 'portrait', hasPhoto: true,
+    id: 't11', label: '11 · Drop / Teaser', category: 'negro', defaultAspect: 'portrait', hasPhoto: true, photoSlots: ['t11-main'], mainSlot: 't11-main',
     fields: [
       { key: 't11Title', label: 'Título', multiline: true },
       { key: 't11Cta', label: 'CTA' },
     ],
   },
   {
-    id: 't13', label: '13 · Event Poster', category: 'negro', defaultAspect: 'portrait', hasPhoto: false,
+    id: 't13', label: '13 · Event Poster', category: 'negro', defaultAspect: 'portrait', hasPhoto: false, photoSlots: [],
     fields: [
       { key: 't13Title', label: 'Título', multiline: true },
       { key: 't13TopLeft', label: 'Sup-izq' }, { key: 't13TopRight', label: 'Sup-der' },
@@ -108,7 +110,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't14', label: '14 · Booking', category: 'negro', defaultAspect: 'portrait', hasPhoto: false,
+    id: 't14', label: '14 · Booking', category: 'negro', defaultAspect: 'portrait', hasPhoto: false, photoSlots: [],
     fields: [
       { key: 't14Headline', label: 'Headline', multiline: true },
       { key: 't14Stamp', label: 'Stamp' },
@@ -119,7 +121,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't24', label: '24 · New Drop', category: 'negro', defaultAspect: 'portrait', hasPhoto: true,
+    id: 't24', label: '24 · New Drop', category: 'negro', defaultAspect: 'portrait', hasPhoto: true, photoSlots: ['t24-photo'], mainSlot: 't24-photo',
     fields: [
       { key: 't24TopLabel', label: 'Top label' },
       { key: 't24Badge', label: 'Badge' },
@@ -129,7 +131,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't19', label: '19 · Sobre Mí / Presentación', category: 'negro', defaultAspect: 'portrait', hasPhoto: true,
+    id: 't19', label: '19 · Sobre Mí / Presentación', category: 'negro', defaultAspect: 'portrait', hasPhoto: true, photoSlots: ['t19-photo'],
     fields: [
       { key: 't19Stamp', label: 'Stamp' },
       { key: 't19Name', label: 'Nombre', multiline: true },
@@ -141,7 +143,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't18', label: '18 · Proceso en Pasos', category: 'negro', defaultAspect: 'portrait', hasPhoto: false,
+    id: 't18', label: '18 · Proceso en Pasos', category: 'negro', defaultAspect: 'portrait', hasPhoto: false, photoSlots: [],
     fields: [
       { key: 't18Stamp', label: 'Stamp' },
       { key: 't18Title', label: 'Título', multiline: true },
@@ -154,7 +156,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't20', label: '20 · Top 5 / Ranking', category: 'negro', defaultAspect: 'portrait', hasPhoto: false,
+    id: 't20', label: '20 · Top 5 / Ranking', category: 'negro', defaultAspect: 'portrait', hasPhoto: false, photoSlots: [],
     fields: [
       { key: 't20Stamp', label: 'Stamp' },
       { key: 't20Title', label: 'Título', multiline: true },
@@ -169,7 +171,7 @@ export const TEMPLATES = [
 
   // ─── ÁMBAR COLLECTION · VIOLETA ───────────────────────────────────
   {
-    id: 't03', label: '03 · Ámbar Collection', category: 'ambar', defaultAspect: 'portrait', hasPhoto: true,
+    id: 't03', label: '03 · Ámbar Collection', category: 'ambar', defaultAspect: 'portrait', hasPhoto: true, photoSlots: ['t03-main'], mainSlot: 't03-main',
     fields: [
       { key: 'noirTitle', label: 'Título grande', multiline: true },
       { key: 't03Stamp', label: 'Stamp' },
@@ -179,7 +181,7 @@ export const TEMPLATES = [
 
   // ─── CARRUSEL · NOTAS Y MANIFIESTO 1:1 ────────────────────────────
   {
-    id: 't06', label: '06 · Type Poster', category: 'carousel', defaultAspect: 'square', hasPhoto: false,
+    id: 't06', label: '06 · Type Poster', category: 'carousel', defaultAspect: 'square', hasPhoto: false, photoSlots: [],
     fields: [
       { key: 'manifestTop', label: 'Manifiesto', multiline: true },
       { key: 'manifestSub', label: 'Subtítulo' },
@@ -188,7 +190,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't15', label: '15 · Before / After', category: 'carousel', defaultAspect: 'square', hasPhoto: true,
+    id: 't15', label: '15 · Before / After', category: 'carousel', defaultAspect: 'square', hasPhoto: true, photoSlots: ['t15-raw', 't15-final'],
     fields: [
       { key: 't15Stamp', label: 'Stamp' },
       { key: 't15RawTag', label: 'Tag izq.' }, { key: 't15RawSub', label: 'Sub izq.' },
@@ -196,7 +198,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't21', label: '21 · Testimonio / Quote', category: 'carousel', defaultAspect: 'square', hasPhoto: true,
+    id: 't21', label: '21 · Testimonio / Quote', category: 'carousel', defaultAspect: 'square', hasPhoto: true, photoSlots: ['t21-photo'],
     fields: [
       { key: 't21Stamp', label: 'Stamp' },
       { key: 't21Quote', label: 'Cita', multiline: true },
@@ -206,7 +208,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't22', label: '22 · Behind the Scenes', category: 'carousel', defaultAspect: 'square', hasPhoto: true,
+    id: 't22', label: '22 · Behind the Scenes', category: 'carousel', defaultAspect: 'square', hasPhoto: true, photoSlots: ['t22-photo'],
     fields: [
       { key: 't22Stamp', label: 'Stamp' },
       { key: 't22Caption', label: 'Pie polaroid' },
@@ -215,7 +217,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't23', label: '23 · Datos / Sesión', category: 'carousel', defaultAspect: 'square', hasPhoto: false,
+    id: 't23', label: '23 · Datos / Sesión', category: 'carousel', defaultAspect: 'square', hasPhoto: false, photoSlots: [],
     fields: [
       { key: 't23Stamp', label: 'Stamp' },
       { key: 't23Title', label: 'Título', multiline: true },
@@ -227,7 +229,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't25', label: '25 · Polaroid Stack', category: 'carousel', defaultAspect: 'square', hasPhoto: true,
+    id: 't25', label: '25 · Polaroid Stack', category: 'carousel', defaultAspect: 'square', hasPhoto: true, photoSlots: ['t25-photo-1', 't25-photo-2', 't25-photo-3'],
     fields: [
       { key: 't25Stamp', label: 'Stamp' },
       { key: 't25Caption', label: 'Pie polaroid' },
@@ -237,7 +239,7 @@ export const TEMPLATES = [
 
   // ─── STORIES 9:16 ─────────────────────────────────────────────────
   {
-    id: 't09', label: '09 · Story Ticker', category: 'stories', defaultAspect: 'story', hasPhoto: true,
+    id: 't09', label: '09 · Story Ticker', category: 'stories', defaultAspect: 'story', hasPhoto: true, photoSlots: ['t09-main'], mainSlot: 't09-main',
     fields: [
       { key: 't09Status', label: 'Status LIVE' },
       { key: 't09Headline', label: 'Headline', multiline: true },
@@ -248,7 +250,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't10', label: '10 · Story Countdown', category: 'stories', defaultAspect: 'story', hasPhoto: false,
+    id: 't10', label: '10 · Story Countdown', category: 'stories', defaultAspect: 'story', hasPhoto: false, photoSlots: [],
     fields: [
       { key: 'countdownDays', label: 'Días' },
       { key: 't10TopLabel', label: 'Top label' },
@@ -258,7 +260,7 @@ export const TEMPLATES = [
     ],
   },
   {
-    id: 't16', label: '16 · Reel Cover', category: 'stories', defaultAspect: 'story', hasPhoto: true,
+    id: 't16', label: '16 · Reel Cover', category: 'stories', defaultAspect: 'story', hasPhoto: true, photoSlots: ['t16-main'], mainSlot: 't16-main',
     fields: [
       { key: 't16Title', label: 'Título', multiline: true },
       { key: 't16ReelTag', label: 'Tag Reel' }, { key: 't16Duration', label: 'Duración' },
@@ -269,7 +271,7 @@ export const TEMPLATES = [
 
   // ─── PERFIL · DESTACADAS ──────────────────────────────────────────
   {
-    id: 't17', label: '17 · Highlight Covers', category: 'profile', defaultAspect: 'square', hasPhoto: false,
+    id: 't17', label: '17 · Highlight Covers', category: 'profile', defaultAspect: 'square', hasPhoto: false, photoSlots: [],
     fields: [
       { key: 't17H1Label', label: 'H1 label' }, { key: 't17H1Glyph', label: 'H1 glyph' },
       { key: 't17H2Label', label: 'H2 label' }, { key: 't17H2Glyph', label: 'H2 glyph' },

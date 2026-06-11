@@ -36,6 +36,7 @@ src/
 │   └── templates-meta.js   # Registry de 26 plantillas + campos + categorías
 ├── lib/
 │   ├── storage.js           # CRUD proyectos (localStorage) + fotos (IDB)
+│   ├── photoRecord.js       # Encuadre de foto: { url, scale, x, y } + límites
 │   └── export.js            # capturePng() + exportAsPng() vía html-to-image
 ├── templates/
 │   ├── primitives.jsx       # Frame, PhotoSlot, LFMark, TechStrip, lpLines, LF
@@ -50,7 +51,8 @@ src/
     ├── Editor.jsx           # Preview + TextPanel + barra de export
     ├── TextPanel.jsx        # Campos de texto por plantilla (useLP)
     ├── BrandSettings.jsx    # Modal tabs: Marca / Sesión / Datos Técnicos
-    └── ExportAllModal.jsx   # Export batch de las 26 plantillas con progreso
+    ├── SessionPhotoModal.jsx# Foto de sesión → slots protagonistas (mainSlot)
+    └── ExportAllModal.jsx   # Export selectivo por sección con progreso
 ```
 
 ## Plantillas (26 — set v2, espeja la curaduría del sitio web)
@@ -105,21 +107,20 @@ T06/T08/T15 escalan a 4:5 con el selector de aspecto del editor.
 - ✅ Proyectos: crear / abrir / renombrar / eliminar
 - ✅ Galería con 26 plantillas + filtros por sección (blanco/negro/ámbar/carrusel/stories/perfil)
 - ✅ Editor: panel de texto en tiempo real + preview escalado + selector de aspecto
-- ✅ Slots de foto: agregar, reemplazar y eliminar (hover overlay + drag & drop)
+- ✅ Slots de foto: agregar, reemplazar, eliminar y **encuadrar** (zoom + paneo, persiste por slot)
+- ✅ **Foto de sesión**: una foto se propaga a los 10 slots protagonistas (botón + FOTO SESIÓN en galería)
+- ✅ Indicador de fotos en galería (chip FOTO n/m por plantilla)
 - ✅ Export PNG individual 2× (1080px) con fuentes e imágenes incrustadas
-- ✅ Export All: modal con progreso, exporta las 26 plantillas en secuencia
+- ✅ Export selectivo: checkboxes por sección + atajo "solo listas (con foto)"
 - ✅ BrandSettings: 3 tabs (Marca / Sesión Actual / Datos Técnicos)
-- ✅ Tests: 26 casos (storage + export presets + integridad de registry), `npm test`
+- ✅ Tests: 36 casos (storage, export, registry, photoRecord), `npm test`
 
 ## Backlog pendiente
-### Alta prioridad
-- **A5** — Foto principal de sesión: subir una foto una vez y propagarla a todos los slots principales
-- **C1** — Export directo al portapapeles
-- **Q4** — Undo en campos de texto (Ctrl+Z)
-- **Q5** — Indicador visual en galería de qué plantillas ya tienen foto
-
 ### Media prioridad
+- **C1** — Export directo al portapapeles
 - **A1** — Duplicar proyecto
+- **A7** — Carga múltiple de fotos (asignar varias a slots de una vez)
+- **Q4** — Undo en campos de texto (Ctrl+Z)
 - **Q2** — Ordenar proyectos por fecha / nombre
 - **Q6** — Zoom en preview del editor
 

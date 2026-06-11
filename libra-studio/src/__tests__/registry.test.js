@@ -54,6 +54,21 @@ describe('registry de plantillas', () => {
     expect(TEMPLATES_BY_ID.t07).toBeUndefined();
   });
 
+  it('photoSlots es coherente con hasPhoto', () => {
+    for (const t of TEMPLATES) {
+      expect(Array.isArray(t.photoSlots), `photoSlots faltante: ${t.id}`).toBe(true);
+      expect(t.photoSlots.length > 0, `hasPhoto/photoSlots inconsistente: ${t.id}`).toBe(t.hasPhoto);
+    }
+  });
+
+  it('mainSlot (foto de sesión) siempre apunta a un slot declarado', () => {
+    const withMain = TEMPLATES.filter(t => t.mainSlot);
+    expect(withMain.length).toBe(10);
+    for (const t of withMain) {
+      expect(t.photoSlots, `mainSlot fuera de photoSlots: ${t.id}`).toContain(t.mainSlot);
+    }
+  });
+
   it('marca: defaults usan LIBRA PHOTOS / LP (identidad original)', () => {
     expect(LP_DEFAULTS.brand).toBe('LIBRA PHOTOS');
     expect(LP_DEFAULTS.monogram).toBe('LP');
