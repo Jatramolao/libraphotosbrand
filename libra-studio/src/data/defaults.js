@@ -1,8 +1,9 @@
-// Tokens por defecto — LIBRA FOTOS (rebrand jun-2026, manual maestro)
-// Espeja TWEAK_DEFAULTS del bundle de diseño "Plantillas Instagram".
+// Tokens por defecto — LIBRA PHOTOS (monograma LP)
+// Estructura basada en el diseño v2 (bundle Claude Design jun-2026),
+// con la identidad de marca original: LIBRA PHOTOS / LP.
 export const LP_DEFAULTS = {
   // ─── Marca ───────────────────────────────────────────────────────
-  brand: 'LIBRA FOTOS', monogram: 'LF', handle: '@_libraphotos', site: 'LIBRAPHOTOS.COM',
+  brand: 'LIBRA PHOTOS', monogram: 'LP', handle: '@_libraphotos', site: 'LIBRAPHOTOS.CL',
 
   // ─── Edición / drop actual ──────────────────────────────────────
   edition: '07', chapter: 'RUNWAY', designer: 'CASA ÍMPETU', collection: 'AVE NEGRA',
@@ -21,16 +22,16 @@ export const LP_DEFAULTS = {
   t02ExpLabel: 'EXPOSURE', t02ExpValue: 'ƒ/2.8 · 1/200 · ISO 3200', t02LocLabel: 'LOCATION', t02LocValue: 'SANTIAGO · CL · 23:42',
 
   // ─── T03 · Ámbar Collection (violeta) ───────────────────────────
-  t03VertLabel: 'VOL · ÁMBAR COLLECTION · 002 — LIBRA FOTOS', t03Stamp: 'ÁMBAR COLLECTION / ARTE DE AUTOR',
+  t03VertLabel: 'VOL · ÁMBAR COLLECTION · 002 — LIBRA PHOTOS', t03Stamp: 'ÁMBAR COLLECTION / ARTE DE AUTOR',
 
   // ─── T04 · Credits Slate ────────────────────────────────────────
   t04TopLabel: 'CREDITS · ED.07 / 03', t04Title: 'CRE\nDITS',
   t04DirectionLabel: 'DIRECTION', t04StylingLabel: 'STYLING', t04StylingValue: 'M. SOTO',
   t04MakeUpLabel: 'MAKE UP', t04MakeUpValue: 'C. NAVARRO', t04ModelLabel: 'MODEL', t04ModelValue: 'V. AGUIRRE @ ELITE',
-  t04Copyright: '© LIBRA FOTOS · MMXXVI', t04EndTag: 'END / 09',
+  t04Copyright: '© LIBRA PHOTOS · MMXXVI', t04EndTag: 'END / 09',
 
   // ─── T06 · Type Poster ──────────────────────────────────────────
-  t06TopLeft: 'FILE / 0247', t06TopRight: 'ED.07 · CHAP. 02', t06BottomLeft: 'LIBRA FOTOS — SS / 26',
+  t06TopLeft: 'FILE / 0247', t06TopRight: 'ED.07 · CHAP. 02', t06BottomLeft: 'LIBRA PHOTOS — SS / 26',
 
   // ─── T08 · Quote Pull ───────────────────────────────────────────
   t08Stamp: 'FILE / 2205', t08Tag: 'SS26',
@@ -52,7 +53,7 @@ export const LP_DEFAULTS = {
   // ─── T13 · Event Poster ─────────────────────────────────────────
   t13TopLeft: 'SANTIAGO · MMXXVI', t13TopRight: 'POSTER / V.02', t13Title: 'FASHION\nWEEK\nSTGO.',
   t13Dates: '14 — 18.06.26', t13Nights: '5 NOCHES', t13LineupLabel: 'LINEUP / COVERAGE',
-  t13Lineup: 'CASA ÍMPETU · NÓMADA\nESTUDIO V · M.SOTO\nNEÓN PROYECTO · TRES', t13Footer: 'COBERTURA EXCLUSIVA · LIBRA FOTOS',
+  t13Lineup: 'CASA ÍMPETU · NÓMADA\nESTUDIO V · M.SOTO\nNEÓN PROYECTO · TRES', t13Footer: 'COBERTURA EXCLUSIVA · LIBRA PHOTOS',
 
   // ─── T14 · Booking ──────────────────────────────────────────────
   t14Stamp: 'AGENDA / 2026', t14Headline: 'RESERVA\nTU\nEDITORIAL.',
@@ -73,7 +74,7 @@ export const LP_DEFAULTS = {
   // ─── T17 · Highlight Covers ─────────────────────────────────────
   t17H1Label: 'RUNWAY', t17H1Glyph: '01', t17H2Label: 'BACKSTAGE', t17H2Glyph: '02',
   t17H3Label: 'ARTE', t17H3Glyph: '03', t17H4Label: 'FILMS', t17H4Glyph: '04',
-  t17H5Label: 'CONTACTO', t17H5Glyph: 'LF',
+  t17H5Label: 'CONTACTO', t17H5Glyph: 'LP',
 
   // ─── T18 · Proceso en pasos ─────────────────────────────────────
   t18Stamp: 'CÓMO TRABAJAMOS', t18Title: 'EL\nPROCESO.',
@@ -82,10 +83,10 @@ export const LP_DEFAULTS = {
   t18S3Num: '03', t18S3Title: 'SELECCIÓN', t18S3Desc: 'Hoja de contacto. Curaduría de las fracciones de segundo clave.',
   t18S4Num: '04', t18S4Title: 'RETOQUE', t18S4Desc: 'Edición con preset de autor LP.01. Grano editorial, contraste duro.',
   t18S5Num: '05', t18S5Title: 'ENTREGA', t18S5Desc: 'Galería final en alta resolución, lista para impresión y plataforma.',
-  t18Footer: 'LIBRA FOTOS · 2026',
+  t18Footer: 'LIBRA PHOTOS · 2026',
 
   // ─── T19 · Sobre mí ─────────────────────────────────────────────
-  t19Stamp: 'SOBRE MÍ / 01', t19Name: 'LIBRA\nFOTOS.', t19Role: 'FOTOGRAFÍA EDITORIAL DE MODA · CHILE',
+  t19Stamp: 'SOBRE MÍ / 01', t19Name: 'LIBRA\nPHOTOS.', t19Role: 'FOTOGRAFÍA EDITORIAL DE MODA · CHILE',
   t19Bio: 'Fotografía de pasarela, backstage y moda editorial. Caos controlado, narrativa editorial y técnica explicada sin jerga. Del tú al tú — exploramos cada proyecto como un mundo propio.',
   t19Stat1Num: '+40', t19Stat1Label: 'EDITORIALES',
   t19Stat2Num: '12', t19Stat2Label: 'FASHION WEEKS',
@@ -117,7 +118,7 @@ export const LP_DEFAULTS = {
   t23Footer: 'ED.07 · CASA ÍMPETU',
 
   // ─── T24 · New Drop ─────────────────────────────────────────────
-  t24TopLabel: 'LIBRA FOTOS · ED.07', t24Badge: 'NOW LIVE', t24Kicker: 'NUEVA EDITORIAL · SS26',
+  t24TopLabel: 'LIBRA PHOTOS · ED.07', t24Badge: 'NOW LIVE', t24Kicker: 'NUEVA EDITORIAL · SS26',
   t24Title: 'AVE\nNEGRA.', t24Cta: 'GALERÍA COMPLETA EN BIO ▸',
 
   // ─── T25 · Polaroid Stack ───────────────────────────────────────
@@ -126,7 +127,7 @@ export const LP_DEFAULTS = {
   // ─── T26 · Portafolio Editorial (blanco) ────────────────────────
   t26Stamp: 'PORTAFOLIO / EDITORIAL', t26Index: '01 / 12',
   t26Caption: 'Pliegues, siluetas y materialidad de la colección — la primera lectura en blanco.',
-  t26Meta: '3:4 · PRESET LF.01',
+  t26Meta: '3:4 · PRESET LP.01',
 
   // ─── T27 · Editorial Spread (blanco) ────────────────────────────
   t27Stamp: 'SPREAD / 04—05', t27Fig1: 'FIG. 01 · SILUETA', t27Fig2: 'FIG. 02 · MATERIAL',

@@ -1,4 +1,4 @@
-// Plantillas T01–T10 — LIBRA FOTOS (diseño v2, jun-2026)
+// Plantillas T01–T10 — LIBRA PHOTOS (diseño v2, jun-2026)
 // Brutalismo de Lujo · Negro #000 · Ámbar #F7A810 · Violeta #4B0082 · Blanco #FFF
 // Archivo Black (titulares) · IBM Plex Mono (técnico) · Lora (cuerpo)
 import { LF, useLP, lpLines, PhotoSlot, Frame, LFMark, TechStrip } from './primitives';

@@ -1,7 +1,7 @@
-# Libra Fotos Studio — Contexto de Proyecto
+# Libra Photos Studio — Contexto de Proyecto
 
 ## Qué es
-App web para crear contenido de Instagram de la marca **LIBRA FOTOS** (fotografía de moda, rebrand jun-2026).
+App web para crear contenido de Instagram de la marca **LIBRA PHOTOS** (fotografía de moda).
 Flujo: **Proyectos → Galería → Editor → Exportar PNG**.
 Todo local: sin backend, sin login. Datos en `localStorage` + `IndexedDB`.
 
@@ -22,7 +22,7 @@ Todo local: sin backend, sin login. Datos en `localStorage` + `IndexedDB`.
 | Cuerpo | Lora (bios, captions, descripciones) |
 | Border-radius | 0 (brutalismo) |
 
-Marca: **LIBRA FOTOS** · monograma **LF** · LIBRAPHOTOS.COM · @_libraphotos
+Marca: **LIBRA PHOTOS** · monograma **LP** · LIBRAPHOTOS.CL · @_libraphotos
 
 ## Arquitectura de archivos clave
 ```
@@ -57,7 +57,7 @@ src/
 ### Portafolio Editorial · Blanco (estilo Vogue, sin overlays)
 | ID | Nombre | Aspecto | ¿Foto? |
 |---|---|---|---|
-| t26 | Portafolio Editorial | 4:5 | ✓ (marca de agua LF violeta 10%) |
+| t26 | Portafolio Editorial | 4:5 | ✓ (marca de agua LP violeta 10%) |
 | t27 | Editorial Spread | 1:1 | ✓ ×2 |
 | t12 | Designer Spotlight | 4:5 | ✓ |
 | t08 | Quote Pull | 1:1 | — |

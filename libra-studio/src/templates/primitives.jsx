@@ -117,7 +117,7 @@ export const LFMark = ({ size = 14, color = LF.white, style = {}, text }) => {
   const lp = useLP();
   return (
     <span style={{ fontFamily: LF.display, fontSize: size, letterSpacing: '-0.04em', color, lineHeight: 1, display: 'inline-block', ...style }}>
-      {text ?? lp?.monogram ?? 'LF'}
+      {text ?? lp?.monogram ?? 'LP'}
     </span>
   );
 };

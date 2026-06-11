@@ -54,9 +54,10 @@ describe('registry de plantillas', () => {
     expect(TEMPLATES_BY_ID.t07).toBeUndefined();
   });
 
-  it('rebrand: defaults usan LIBRA FOTOS / LF', () => {
-    expect(LP_DEFAULTS.brand).toBe('LIBRA FOTOS');
-    expect(LP_DEFAULTS.monogram).toBe('LF');
-    expect(LP_DEFAULTS.site).toBe('LIBRAPHOTOS.COM');
+  it('marca: defaults usan LIBRA PHOTOS / LP (identidad original)', () => {
+    expect(LP_DEFAULTS.brand).toBe('LIBRA PHOTOS');
+    expect(LP_DEFAULTS.monogram).toBe('LP');
+    expect(LP_DEFAULTS.t17H5Glyph).toBe('LP');
+    expect(LP_DEFAULTS.brand).not.toMatch(/FOTOS/);
   });
 });

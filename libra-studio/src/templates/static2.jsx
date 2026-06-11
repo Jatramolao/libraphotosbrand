@@ -1,4 +1,4 @@
-// Plantillas T11–T17 — LIBRA FOTOS (diseño v2, jun-2026)
+// Plantillas T11–T17 — LIBRA PHOTOS (diseño v2, jun-2026)
 import { LF, useLP, lpLines, PhotoSlot, Frame, LFMark, TechStrip } from './primitives';
 
 // ─── T11 · DROP / TEASER (4:5) ──────────────────────────────────────────────

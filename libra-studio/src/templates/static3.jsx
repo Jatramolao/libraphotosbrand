@@ -1,4 +1,4 @@
-// Plantillas T18–T25 — LIBRA FOTOS (lote 2 del diseño v2)
+// Plantillas T18–T25 — LIBRA PHOTOS (lote 2 del diseño v2)
 // Comparten el ADN brutalista: Archivo Black + IBM Plex Mono + Lora, border-radius 0.
 import { LF, useLP, lpLines, PhotoSlot, Frame, LFMark, TechStrip } from './primitives';
 

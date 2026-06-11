@@ -1,4 +1,4 @@
-// Plantillas T26–T28 — LIBRA FOTOS (lote 3 del diseño v2)
+// Plantillas T26–T28 — LIBRA PHOTOS (lote 3 del diseño v2)
 // T26/T27 espejan el "Portafolio Editorial" del sitio (blanco, limpio, sin
 // overlays — estilo Vogue) y T28 cubre el core de eventos musicales.
 import { LF, useLP, PhotoSlot, Frame, LFMark, TechStrip } from './primitives';
